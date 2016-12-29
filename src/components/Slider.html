@@ -1,0 +1,91 @@
+<style>
+  .colorpicker-slider {
+    padding: 8px;
+    background: #fff;
+    position: relative;
+  }
+
+  .colorpicker-slider-track {
+    height:8px;
+    background: -moz-linear-gradient(left, #ff0000 0%, #ffff00 16%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 84%, #ff0004 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ff0000), color-stop(16%, #ffff00), color-stop(33%, #00ff00), color-stop(50%, #00ffff), color-stop(67%, #0000ff), color-stop(84%, #ff00ff), color-stop(100%, #ff0004));
+    background: -webkit-linear-gradient(left, #ff0000 0%, #ffff00 16%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 84%, #ff0004 100%);
+    background: -o-linear-gradient(left, #ff0000 0%, #ffff00 16%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 84%, #ff0004 100%);
+    background: -ms-linear-gradient(left, #ff0000 0%, #ffff00 16%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 84%, #ff0004 100%);
+    background: -left-linear-gradient(left,#ff0000 0%,#ffff00 16%,#00ff00 33%,#00ffff 50%,#0000ff 67%,#ff00ff 84%,#ff0004 100%);
+    cursor: pointer;
+  }
+
+  .colorpicker-slider-draghandle {
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    top: 7px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px #444444;
+    cursor: pointer;
+  }
+</style>
+
+<div class="colorpicker-slider">
+  <div
+    class="colorpicker-slider-track"
+    on:mousedown="onTrackMouseDown(event)">
+  </div>
+  <div
+    class="colorpicker-slider-draghandle"
+    on:mousedown="onDraghandleMouseDown(event)"
+    style="left: {{ xPos }}px;">
+  </div>
+</div>
+
+<script>
+  export default {
+    onrender() {
+      this.originalOffsetX
+      this.originalX
+
+      this.handleGlobalMouseup = event => {
+        document.removeEventListener('mousemove', this.handleGlobalMouseMove)
+        document.removeEventListener('mouseup', this.handleGlobalMouseup)
+      }
+
+      this.handleGlobalMouseMove = event => {
+        const delta = event.x - this.originalX
+        let xPos = this.originalOffsetX + delta
+
+        xPos = Math.min(xPos, 232)
+        xPos = Math.max(xPos, 0)
+
+        this.set({ xPos: xPos + 4 })
+      }
+    },
+
+    data() {
+      return {
+        xPos: 4
+      }
+    },
+
+    methods: {
+      onTrackMouseDown(event) {
+        event.preventDefault()
+        document.addEventListener('mouseup', this.handleGlobalMouseup)
+        document.addEventListener('mousemove', this.handleGlobalMouseMove)
+        this.originalOffsetX = event.offsetX
+        this.originalX = event.x
+        this.set({ xPos: event.offsetX + 4 })
+      },
+
+      onDraghandleMouseDown(event) {
+        event.preventDefault()
+        document.addEventListener('mouseup', this.handleGlobalMouseup)
+        document.addEventListener('mousemove', this.handleGlobalMouseMove)
+        this.originalOffsetX = this.get('xPos')
+        this.originalX = event.x
+      }
+    }
+  }
+</script>

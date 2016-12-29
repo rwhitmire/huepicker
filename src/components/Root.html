@@ -1,0 +1,29 @@
+<style>
+  .colorpicker {
+    display: inline-block;
+    position: relative;
+  }
+</style>
+
+<div class="colorpicker">
+  <Input value="{{ value }}" on:change="onChangeValue(event)" />
+  <Dropdown value="{{ value }}" />
+</div>
+
+<script>
+  import Input from './Input'
+  import Dropdown from './Dropdown'
+
+  export default {
+    methods: {
+      onChangeValue(value) {
+        this.fire('changeValue', value)
+      }
+    },
+
+    components: {
+      Input,
+      Dropdown
+    }
+  }
+</script>

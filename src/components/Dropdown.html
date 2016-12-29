@@ -1,0 +1,30 @@
+<style>
+  .colorpicker-dropdown {
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    left: 0;
+    width: 250px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<div class="colorpicker-dropdown">
+  <ColorPreview value="{{ value }}" />
+  <ColorPalette />
+  <Slider />
+</div>
+
+<script>
+  import ColorPreview from './ColorPreview'
+  import ColorPalette from './ColorPalette'
+  import Slider from './Slider'
+
+  export default {
+    components: {
+      ColorPreview,
+      ColorPalette,
+      Slider
+    }
+  }
+</script>

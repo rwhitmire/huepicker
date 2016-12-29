@@ -1,0 +1,17 @@
+<input type="text" value="{{ value }}" on:input="onChange(event)" />
+
+<script>
+  export default {
+    methods: {
+      onChange(event) {
+        // preserve cursor position
+        const cursorPos = event.target.selectionStart
+
+        this.fire('change', event.target.value)
+
+        // reset cursor position
+        event.target.setSelectionRange(cursorPos, cursorPos)
+      }
+    }
+  }
+</script>
