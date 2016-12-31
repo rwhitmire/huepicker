@@ -9,7 +9,10 @@
   }
 </style>
 
-<div class="colorpicker-dropdown">
+<div
+  class="colorpicker-dropdown"
+  on:mousedown="onMousedown(event)">
+
   <ColorPreview h="{{ h }}" s="{{ s }}" v="{{ v }}" />
 
   <ColorPalette
@@ -36,6 +39,10 @@
     },
 
     methods: {
+      onMousedown(event) {
+        event.preventDefault()
+      },
+
       onChangeSlider(params) {
         this.set({
           h: params.h

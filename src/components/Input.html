@@ -1,25 +1,6 @@
-<input type="text" value="{{ value }}" on:input="onChange(event)" />
-
-<script>
-  import { parseInput } from '../parser'
-  import { rgbToHsv } from '../converters'
-
-  export default {
-    methods: {
-      onChange(event) {
-        // try to parse the user input value
-        const rgb = parseInput(event.target.value)
-
-        // if the value doesn't parse, do nothing
-        if(rgb === null) {
-          return
-        }
-
-        // if the value does parse, fire an event that
-        // will tell draghandles on the slider and palette to update.
-        const hsv = rgbToHsv(rgb)
-        this.fire('change', hsv)
-      }
-    }
-  }
-</script>
+<input
+  type="text"
+  value="{{ value }}"
+  on:input="fire('change', event)"
+  on:focus="fire('focus', event)"
+  on:blur="fire('blur', event)" />

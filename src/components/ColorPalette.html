@@ -92,7 +92,6 @@
         event.preventDefault()
         document.addEventListener('mouseup', this.handleGlobalMouseup)
         document.addEventListener('mousemove', this.handleGlobalMouseMove)
-
         this.originalOffsetX = event.offsetX
         this.originalX = event.clientX
         this.originalOffsetY = event.offsetY
@@ -102,12 +101,13 @@
 
       onDraghandleMouseDown(event) {
         event.preventDefault()
+        event.stopPropagation()
         document.addEventListener('mouseup', this.handleGlobalMouseup)
         document.addEventListener('mousemove', this.handleGlobalMouseMove)
         this.originalOffsetX = this.get('x')
-        this.originalX = event.clientX
+        this.originalX = event.clientX - handlePadding
         this.originalOffsetY = this.get('y')
-        this.originalY = event.clientY
+        this.originalY = event.clientY - handlePadding
       },
 
       updateHandlePosition(x, y) {
@@ -132,14 +132,10 @@
         const xPercentage = s / 100
         const yPercentage = v / 100
 
-        console.log('y:', (paletteHeight * yPercentage) - handlePadding)
-
         this.set({
           x: (paletteWidth * xPercentage) - handlePadding,
           y: paletteHeight - (paletteHeight * yPercentage) - handlePadding
         })
-
-        console.log('set palette values from hsv', hsv)
       }
     },
 

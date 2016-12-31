@@ -5,14 +5,24 @@
   }
 </style>
 
-<div class="colorpicker">
-  <Input value="{{ inputValue }}" on:change="onChangeInputValue(event)" />
-  <Dropdown
-    h="{{ h }}"
-    s="{{ s }}"
-    v="{{ v }}"
-    userInputHsv="{{ userInputHsv }}"
-    on:change="onChangeHsv(event)" />
+<div
+  class="colorpicker"
+  on:click="onClickRoot(event)">
+
+  <Input
+    value="{{ inputValue }}"
+    on:change="onChangeInputValue(event)"
+    on:focus="onInputFocus(event)"
+    on:blur="onInputBlur(event)" />
+
+    {{#if open}}
+      <Dropdown
+        h="{{ h }}"
+        s="{{ s }}"
+        v="{{ v }}"
+        userInputHsv="{{ userInputHsv }}"
+        on:change="onChangeHsv(event)" />
+    {{/if}}
 </div>
 
 <script>
@@ -21,8 +31,11 @@
 
   import {
     hsvToRgb,
-    rgbToHex
+    rgbToHex,
+    rgbToHsv
   } from '../converters'
+
+  import { parseInput } from '../parser'
 
   export default {
     data() {
@@ -30,23 +43,60 @@
         h: 0,
         s: 0,
         v: 0,
-        userInputHsv: [ 0, 0, 0 ]
+        userInputHsv: [ 0, 0, 0 ],
+        open: false
       }
     },
 
     methods: {
       onChangeHsv(params) {
-        const hex = rgbToHex(hsvToRgb([params.h, params.s, params.v]))
+        const hex = rgbToHex(hsvToRgb([
+          params.h,
+          params.s,
+          params.v
+        ]))
+
         this.set({ inputValue: `#${hex}` })
+
+        console.log('CHANGE!')
+
       },
 
-      onChangeInputValue(hsv) {
+      onChangeInputValue(event) {
+        this.setStateFromUserInput(event.target.value)
+
+        console.log('CHANGE!')
+
+      },
+
+      setStateFromUserInput(inputValue) {
+        const rgb = parseInput(inputValue)
+
+        if(rgb === null) {
+          return
+        }
+
+        const hsv = rgbToHsv(rgb)
+
         this.set({
           h: hsv[0],
           s: hsv[1],
           v: hsv[2],
           userInputHsv: hsv
         })
+      },
+
+      onInputFocus() {
+        this.setStateFromUserInput(this.get('inputValue'))
+        this.set({ open: true })
+      },
+
+      onInputBlur() {
+        this.set({ open: false })
+      },
+
+      onClickRoot(event) {
+        event.stopPropagation()
       }
     },
 
