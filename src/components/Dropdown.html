@@ -10,9 +10,17 @@
 </style>
 
 <div class="colorpicker-dropdown">
-  <ColorPreview value="{{ value }}" />
-  <ColorPalette />
-  <Slider />
+  <ColorPreview h="{{ h }}" s="{{ s }}" v="{{ v }}" />
+
+  <ColorPalette
+    h="{{ h }}"
+    userInputHsv="{{ userInputHsv }}"
+    on:change="onChangePalette(event)" />
+
+  <Slider
+    h="{{ h }}"
+    userInputHsv="{{ userInputHsv }}"
+    on:change="onChangeSlider(event)" />
 </div>
 
 <script>
@@ -25,6 +33,33 @@
       ColorPreview,
       ColorPalette,
       Slider
+    },
+
+    methods: {
+      onChangeSlider(params) {
+        this.set({
+          h: params.h
+        })
+
+        this.hsvChanged()
+      },
+
+      onChangePalette(params) {
+        this.set({
+          s: params.s,
+          v: params.v
+        })
+
+        this.hsvChanged()
+      },
+
+      hsvChanged() {
+        this.fire('change', {
+          h: this.get('h'),
+          s: this.get('s'),
+          v: this.get('v')
+        })
+      }
     }
   }
 </script>

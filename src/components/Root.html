@@ -6,18 +6,47 @@
 </style>
 
 <div class="colorpicker">
-  <Input value="{{ value }}" on:change="onChangeValue(event)" />
-  <Dropdown value="{{ value }}" />
+  <Input value="{{ inputValue }}" on:change="onChangeInputValue(event)" />
+  <Dropdown
+    h="{{ h }}"
+    s="{{ s }}"
+    v="{{ v }}"
+    userInputHsv="{{ userInputHsv }}"
+    on:change="onChangeHsv(event)" />
 </div>
 
 <script>
   import Input from './Input'
   import Dropdown from './Dropdown'
 
+  import {
+    hsvToRgb,
+    rgbToHex
+  } from '../converters'
+
   export default {
+    data() {
+      return {
+        h: 0,
+        s: 0,
+        v: 0,
+        userInputHsv: [ 0, 0, 0 ]
+      }
+    },
+
     methods: {
-      onChangeValue(value) {
-        this.fire('changeValue', value)
+      onChangeHsv(params) {
+        const hex = rgbToHex(hsvToRgb([params.h, params.s, params.v]))
+        this.set({ inputValue: `#${hex}` })
+      },
+
+      onChangeInputValue(hsv) {
+        this.set({
+          h: hsv[0],
+          s: hsv[1],
+          v: hsv[2],
+          userInputHsv: hsv
+        })
       }
     },
 

@@ -4,4 +4,20 @@
   }
 </style>
 
-<div class="colorpicker-preview" style="background-color: {{ value }};"></div>
+<div class="colorpicker-preview" style="background-color: {{ backgroundColor }};"></div>
+
+<script>
+  import { hsvToRgb } from '../converters'
+
+  export default {
+    computed: {
+      backgroundColor: (h, s, v) => {
+        const rgb = hsvToRgb([h, s, v])
+        const r = Math.round(rgb[0])
+        const g = Math.round(rgb[1])
+        const b = Math.round(rgb[2])
+        return `rgb(${r}, ${g}, ${b})`
+      }
+    }
+  }
+</script>

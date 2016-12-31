@@ -22,7 +22,7 @@
     width: 10px;
     top: 7px;
     border-radius: 50%;
-    border: 4px solid white;
+    border: 3px solid white;
     box-sizing: border-box;
     box-shadow: 0 1px 4px #444444;
     cursor: pointer;
@@ -37,11 +37,14 @@
   <div
     class="colorpicker-slider-draghandle"
     on:mousedown="onDraghandleMouseDown(event)"
-    style="left: {{ xPos }}px;">
+    style="left: {{ x }}px;">
   </div>
 </div>
 
 <script>
+  const handlePadding = 4
+  const sliderWidth = 232
+
   export default {
     onrender() {
       this.originalOffsetX
@@ -53,19 +56,23 @@
       }
 
       this.handleGlobalMouseMove = event => {
-        const delta = event.x - this.originalX
-        let xPos = this.originalOffsetX + delta
-
-        xPos = Math.min(xPos, 232)
-        xPos = Math.max(xPos, 0)
-
-        this.set({ xPos: xPos + 4 })
+        const delta = event.clientX - this.originalX
+        let x = this.originalOffsetX + delta
+        x = Math.min(x, sliderWidth)
+        x = Math.max(x, 0)
+        this.updateHandlePosition(x)
       }
+
+      this.observe('userInputHsv', hsv => {
+        // when an hsv change comes from user input, update
+        // h and x.
+        this.setValuesFromHsv(hsv)
+      })
     },
 
     data() {
       return {
-        xPos: 4
+        x: 0
       }
     },
 
@@ -74,17 +81,31 @@
         event.preventDefault()
         document.addEventListener('mouseup', this.handleGlobalMouseup)
         document.addEventListener('mousemove', this.handleGlobalMouseMove)
+
         this.originalOffsetX = event.offsetX
-        this.originalX = event.x
-        this.set({ xPos: event.offsetX + 4 })
+        this.originalX = event.clientX
+        this.updateHandlePosition(event.offsetX)
       },
 
       onDraghandleMouseDown(event) {
         event.preventDefault()
         document.addEventListener('mouseup', this.handleGlobalMouseup)
         document.addEventListener('mousemove', this.handleGlobalMouseMove)
-        this.originalOffsetX = this.get('xPos')
-        this.originalX = event.x
+        this.originalOffsetX = this.get('x')
+        this.originalX = event.clientX
+      },
+
+      updateHandlePosition(pos) {
+        this.set({ x: pos + handlePadding })
+        const percentage = pos / sliderWidth
+
+        this.fire('change', {
+          h: 360 * percentage
+        })
+      },
+
+      setValuesFromHsv(hsv) {
+        this.set({ x: (sliderWidth * (hsv[0] / 360)) + handlePadding })
       }
     }
   }
