@@ -9,10 +9,11 @@ window.colorpicker = function(opts) {
     }
   })
 
-  root.on('changeValue', value => {
-    root.set({ value })
-    opts.onChange(value)
-  })
+  if(opts.onChange) {
+    root.on('change', value => {
+      opts.onChange(value)
+    })
+  }
 
   return root
 }

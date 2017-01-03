@@ -1,6 +1,29 @@
 <input
   type="text"
   value="{{ value }}"
-  on:input="fire('change', event)"
+  on:input="onInput(event)"
   on:focus="fire('focus', event)"
   on:blur="fire('blur', event)" />
+
+<script>
+  export default {
+    methods: {
+      onInput(event) {
+        this.preserveCursorPosition(event, () => {
+          this.fire('change', event)
+        })
+      },
+
+      /**
+       * svelte doesn't preserve cursor position on value updates
+       */
+
+      preserveCursorPosition(event, callback) {
+        const preservedIndex = event.target.selectionStart
+        callback()
+        event.target.selectionStart = preservedIndex
+        event.target.selectionEnd = preservedIndex
+      }
+    }
+  }
+</script>

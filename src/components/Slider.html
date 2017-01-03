@@ -50,12 +50,12 @@
       this.originalOffsetX
       this.originalX
 
-      this.handleGlobalMouseup = event => {
-        document.removeEventListener('mousemove', this.handleGlobalMouseMove)
-        document.removeEventListener('mouseup', this.handleGlobalMouseup)
+      this.handleDocumentMouseup = event => {
+        document.removeEventListener('mousemove', this.handleDocumentMouseMove)
+        document.removeEventListener('mouseup', this.handleDocumentMouseup)
       }
 
-      this.handleGlobalMouseMove = event => {
+      this.handleDocumentMouseMove = event => {
         const delta = event.clientX - this.originalX
         let x = this.originalOffsetX + delta
         x = Math.min(x, sliderWidth)
@@ -79,8 +79,8 @@
     methods: {
       onTrackMouseDown(event) {
         event.preventDefault()
-        document.addEventListener('mouseup', this.handleGlobalMouseup)
-        document.addEventListener('mousemove', this.handleGlobalMouseMove)
+        document.addEventListener('mouseup', this.handleDocumentMouseup)
+        document.addEventListener('mousemove', this.handleDocumentMouseMove)
 
         this.originalOffsetX = event.offsetX
         this.originalX = event.clientX
@@ -89,8 +89,8 @@
 
       onDraghandleMouseDown(event) {
         event.preventDefault()
-        document.addEventListener('mouseup', this.handleGlobalMouseup)
-        document.addEventListener('mousemove', this.handleGlobalMouseMove)
+        document.addEventListener('mouseup', this.handleDocumentMouseup)
+        document.addEventListener('mousemove', this.handleDocumentMouseMove)
         this.originalOffsetX = this.get('x')
         this.originalX = event.clientX
       },

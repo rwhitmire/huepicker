@@ -14,16 +14,16 @@
     var cp1 = colorpicker({
       el: document.getElementById('picker1'),
       value: 'green',
-      onChange: function() {
-        console.log('onchange picker 1...')
+      onChange: function(color) {
+        console.log('onchange picker 1...', color)
       }
     })
 
     var cp2 = colorpicker({
       el: document.getElementById('picker2'),
       value: 'red',
-      onChange: function() {
-        console.log('onchange picker 2...')
+      onChange: function(color) {
+        console.log('onchange picker 2...', color)
       }
     })
   </script>

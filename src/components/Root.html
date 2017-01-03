@@ -56,39 +56,44 @@
           params.v
         ]))
 
-        this.set({ inputValue: `#${hex}` })
-
-        console.log('CHANGE!')
-
+        const inputValue = `#${hex}`
+        this.set({ inputValue })
+        this.fire('change', inputValue)
       },
 
       onChangeInputValue(event) {
-        this.setStateFromUserInput(event.target.value)
-
-        console.log('CHANGE!')
-
-      },
-
-      setStateFromUserInput(inputValue) {
+        const inputValue = event.target.value
         const rgb = parseInput(inputValue)
 
         if(rgb === null) {
           return
         }
 
-        const hsv = rgbToHsv(rgb)
+        this.setHsv(rgbToHsv(rgb))
+        this.set({ inputValue })
+        this.fire('change', inputValue)
+      },
 
+      onInputFocus() {
+        const inputValue = this.get('inputValue')
+        const rgb = parseInput(inputValue)
+
+        if(rgb === null) {
+          return
+        }
+
+        this.setHsv(rgbToHsv(rgb))
+        this.set({ inputValue })
+        this.set({ open: true })
+      },
+
+      setHsv(hsv) {
         this.set({
           h: hsv[0],
           s: hsv[1],
           v: hsv[2],
           userInputHsv: hsv
         })
-      },
-
-      onInputFocus() {
-        this.setStateFromUserInput(this.get('inputValue'))
-        this.set({ open: true })
       },
 
       onInputBlur() {
