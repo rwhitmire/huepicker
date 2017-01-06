@@ -1,11 +1,11 @@
 import './polyfills/object-assign-polyfill'
 import Root from './components/Root'
 
-window.colorpicker = function(opts) {
+const colorpicker = function(opts) {
   const root = new Root({
     target: opts.el,
     data: {
-      inputValue: opts.value
+      inputValue: opts.value || '#FFFFFF'
     }
   })
 
@@ -17,3 +17,5 @@ window.colorpicker = function(opts) {
 
   return root
 }
+
+module.exports = colorpicker

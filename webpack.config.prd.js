@@ -11,8 +11,11 @@ module.exports = {
   },
 
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: resolve(__dirname, 'lib'),
     filename: 'colorpicker.js',
+    library: 'colorpicker',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
 
   devtool: 'source-map',

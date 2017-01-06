@@ -2,11 +2,12 @@
   "name": "colorpicker",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "lib/colorpicker.js",
   "scripts": {
     "test": "jest",
     "start": "webpack --config webpack.config.dev.js --watch",
-    "build": "webpack --config webpack.config.prd.js"
+    "build": "webpack --config webpack.config.prd.js",
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",

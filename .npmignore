@@ -1,0 +1,7 @@
+src
+index.html
+.travis.yml
+webpack.config.*
+yarn.lock
+.babelrc
+colorpicker.js.map
