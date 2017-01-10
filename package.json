@@ -2,7 +2,7 @@
   "name": "huepicker",
   "version": "0.0.1",
   "description": "",
-  "main": "lib/colorpicker.js",
+  "main": "lib/huepicker.js",
   "scripts": {
     "test": "jest",
     "start": "webpack --config webpack.config.dev.js --watch",

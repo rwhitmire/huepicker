@@ -12,8 +12,8 @@ module.exports = {
 
   output: {
     path: resolve(__dirname, 'lib'),
-    filename: 'colorpicker.js',
-    library: 'colorpicker',
+    filename: 'huepicker.js',
+    library: 'huepicker',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -4,4 +4,4 @@ index.html
 webpack.config.*
 yarn.lock
 .babelrc
-colorpicker.js.map
+huepicker.js.map

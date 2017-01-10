@@ -1,10 +1,10 @@
 <style>
-  .colorpicker-palette {
+  .huepicker-palette {
     position: relative;
     cursor: pointer;
   }
 
-  .colorpicker-palette-gradient {
+  .huepicker-palette-gradient {
     height: 180px;
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #000000 100%), /* FF3.6+ */ -moz-linear-gradient(left, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, #000000)), /* Chrome,Safari4+ */ -webkit-gradient(linear, left top, right top, color-stop(0%, #ffffff), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -14,7 +14,7 @@
     background: -top-linear-gradient(top,rgba(0,0,0,0) 0%,#000000 100%), /* W3C */ -left-linear-gradient(left,#ffffff 0%,rgba(255,255,255,0) 100%);
   }
 
-  .colorpicker-palette-draghandle {
+  .huepicker-palette-draghandle {
     position: absolute;
     height: 8px;
     width: 8px;
@@ -28,11 +28,11 @@
 </style>
 
 <div
-  class="colorpicker-palette"
+  class="huepicker-palette"
   style="background-color: {{ backgroundColor }};"
   on:mousedown="onPaletteMouseDown(event)">
-  <div class="colorpicker-palette-gradient"></div>
-  <div class="colorpicker-palette-draghandle"
+  <div class="huepicker-palette-gradient"></div>
+  <div class="huepicker-palette-draghandle"
     on:mousedown="onDraghandleMouseDown(event)"
     style="left: {{ x }}px; top: {{ y }}px;">
   </div>

@@ -1,7 +1,7 @@
 import './polyfills/object-assign-polyfill'
 import Root from './components/Root'
 
-const colorpicker = function(opts) {
+const huepicker = function(opts) {
   const root = new Root({
     target: opts.el,
     data: {
@@ -18,4 +18,4 @@ const colorpicker = function(opts) {
   return root
 }
 
-module.exports = colorpicker
+module.exports = huepicker

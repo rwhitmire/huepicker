@@ -1,11 +1,11 @@
 <style>
-  .colorpicker-slider {
+  .huepicker-slider {
     padding: 8px;
     background: #fff;
     position: relative;
   }
 
-  .colorpicker-slider-track {
+  .huepicker-slider-track {
     height:8px;
     background: -moz-linear-gradient(left, #ff0000 0%, #ffff00 16%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 84%, #ff0004 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ff0000), color-stop(16%, #ffff00), color-stop(33%, #00ff00), color-stop(50%, #00ffff), color-stop(67%, #0000ff), color-stop(84%, #ff00ff), color-stop(100%, #ff0004));
@@ -16,7 +16,7 @@
     cursor: pointer;
   }
 
-  .colorpicker-slider-draghandle {
+  .huepicker-slider-draghandle {
     position: absolute;
     height: 10px;
     width: 10px;
@@ -29,13 +29,13 @@
   }
 </style>
 
-<div class="colorpicker-slider">
+<div class="huepicker-slider">
   <div
-    class="colorpicker-slider-track"
+    class="huepicker-slider-track"
     on:mousedown="onTrackMouseDown(event)">
   </div>
   <div
-    class="colorpicker-slider-draghandle"
+    class="huepicker-slider-draghandle"
     on:mousedown="onDraghandleMouseDown(event)"
     style="left: {{ x }}px;">
   </div>
