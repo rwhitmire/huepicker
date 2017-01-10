@@ -2,6 +2,8 @@
 
 A hassle-free colorpicker control, ~8.1KB gzipped.
 
+![huepicker](https://github.com/rwhitmire/huepicker/blob/master/docs/screenshot.jpg?raw=true)
+
 ### Browser
 
 [Download](https://github.com/rwhitmire/huepicker/releases/download/0.0.1/huepicker.zip)
