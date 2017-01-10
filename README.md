@@ -1,6 +1,6 @@
 # huepicker
 
-A hassle-free control for color selection
+A hassle-free colorpicker control, ~8.1KB gzipped.
 
 ### Browser
 
