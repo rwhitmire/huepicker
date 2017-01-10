@@ -4,6 +4,8 @@ A hassle-free control for color selection
 
 ### Browser
 
+[Download](https://github.com/rwhitmire/huepicker/releases/download/0.0.1/huepicker.zip)
+
 ``` html
 <div id="picker"></div>
 <script src="huepicker.js"></script>
@@ -19,6 +21,10 @@ A hassle-free control for color selection
 ```
 
 ### NPM
+
+```
+npm i --save huepicker
+```
 
 ``` js
 import huepicker from 'huepicker'
