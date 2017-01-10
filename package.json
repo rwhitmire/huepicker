@@ -1,6 +1,6 @@
 {
-  "name": "colorpicker",
-  "version": "1.0.0",
+  "name": "huepicker",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/colorpicker.js",
   "scripts": {
