@@ -1,7 +1,0 @@
-src
-index.html
-.travis.yml
-webpack.config.*
-yarn.lock
-.babelrc
-huepicker.js.map
