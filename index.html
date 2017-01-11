@@ -7,5 +7,15 @@
 </head>
 <body>
   huepicker docs
+  <input type="text" id="huepicker">
+  <script src="js/huepicker.js"></script>
+  <script>
+    huepicker({
+      el: document.getElementById('picker'),
+      onChange: function(color) {
+        console.log('changed', color)
+      }
+    })
+  </script>
 </body>
 </html>
