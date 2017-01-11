@@ -16,7 +16,7 @@ A hassle-free colorpicker control, ~8.1KB gzipped.
     el: document.getElementById('picker'),
     value: 'red',
     onChange: function(color) {
-      console.log('onchange picker 1...', color)
+      console.log('changed', color)
     }
   })
 </script>
@@ -35,7 +35,7 @@ huepicker({
   el: document.getElementById('picker'),
   value: 'red',
   onChange: function(color) {
-    console.log('onchange picker 1...', color)
+    console.log('changed', color)
   }
 })
 ```
