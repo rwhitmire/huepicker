@@ -4,14 +4,40 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
 </head>
 <body>
-  huepicker docs
-  <input type="text" id="huepicker">
+
+<div id="huepicker"></div>
+<h3>html</h3>
+<pre>
+<code class="html">&lt;!--be sure to use a div rather than an input!--&gt;
+&lt;div id="huepicker"&gt;&lt;/div&gt;
+</code>
+</pre>
+
+<h3>js</h3>
+<pre>
+<code class="js">import huepicker from 'huepicker'
+
+huepicker({
+  el: document.getElementById('huepicker'),
+  value: 'red',
+  onChange: function(color) {
+    console.log('changed', color)
+  }
+})
+</code>
+</pre>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
   <script src="js/huepicker.js"></script>
   <script>
+    hljs.initHighlightingOnLoad();
+
     huepicker({
-      el: document.getElementById('picker'),
+      el: document.getElementById('huepicker'),
+      value: 'red',
       onChange: function(color) {
         console.log('changed', color)
       }
