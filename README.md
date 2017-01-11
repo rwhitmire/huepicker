@@ -6,7 +6,7 @@ A hassle-free colorpicker control, ~8.1KB gzipped.
 
 ### Browser
 
-[Download](https://github.com/rwhitmire/huepicker/releases/download/0.0.1/huepicker.zip)
+[Download](https://github.com/rwhitmire/huepicker/releases/latest)
 
 ``` html
 <div id="picker"></div>
